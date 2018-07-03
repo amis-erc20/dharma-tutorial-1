@@ -1,12 +1,15 @@
 import React, { Component } from "react";
-import Dharma from "@dharmaprotocol/dharma.js";
 
 import { RequestLoanForm } from "../RequestLoanForm/RequestLoanForm";
 
 import "./App.css";
 
-// Instantiate a new instance of Dharma, passing in the host of the local blockchain.
-const dharma = new Dharma("http://localhost:8545");
+/*
+ * Step 1:
+ * Instantiate a new instance of Dharma, passing in the host of the local blockchain.
+ */
+import Dharma from "@dharmaprotocol/dharma.js";
+const dharma = null; // fix this line
 
 export default class App extends Component {
     constructor(props) {
@@ -28,7 +31,11 @@ export default class App extends Component {
 
         const { principal, collateral, expiration, termLength, interestRate } = formData;
 
-        const accounts = await dharma.blockchain.getAccounts();
+        /*
+         * Step 3:
+         * Fetch the current accounts from the blockchain.
+         */
+        const accounts = null; // fix this line
 
         if (!accounts) {
             console.error("No acccounts detected from web3 -- ensure a local blockchain is running.");
@@ -40,20 +47,11 @@ export default class App extends Component {
 
         const debtorAddressString = accounts[0];
 
-        const order = await DebtOrder.create(dharma, {
-            principalAmount: principal,
-            principalToken: "WETH",
-            collateralAmount: collateral,
-            collateralToken: "REP",
-            interestRate: interestRate,
-            termDuration: termLength,
-            termUnit: "months",
-            debtorAddress: debtorAddressString,
-            expiresInDuration: expiration,
-            expiresInUnit: "weeks"
-        });
-
-        console.log(order.serialize());
+        /*
+         * Step 2:
+         * Create a Dharma Debt Order when the form is submitted by the user.
+         */
+        const debtOrder = null; // fix this line
 
         this.setState({
             isAwaitingBlockchain: false
