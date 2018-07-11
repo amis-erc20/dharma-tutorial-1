@@ -20,15 +20,15 @@ export default class App extends Component {
             isAwaitingBlockchain: false
         };
 
-        this.createDebtOrder = this.createDebtOrder.bind(this);
+        this.createLoanRequest = this.createLoanRequest.bind(this);
     }
 
-    async createDebtOrder(formData) {
+    async createLoanRequest(formData) {
         this.setState({
             isAwaitingBlockchain: true
         });
 
-        const { DebtOrder } = Dharma.Types;
+        const { LoanRequest } = Dharma.Types;
 
         const { principal, collateral, expiration, termLength, interestRate } = formData;
 
@@ -52,7 +52,7 @@ export default class App extends Component {
          * Step 3:
          * Create a Dharma Debt Order when the form is submitted by the user.
          */
-        const order = null; // fix this line
+        const loanRequest = null; // fix this line
 
         this.setState({
             isAwaitingBlockchain: false
@@ -74,7 +74,10 @@ export default class App extends Component {
                     <h1 className="App-title">Request a Loan on Dharma</h1>
                 </header>
 
-                <RequestLoanForm createDebtOrder={this.createDebtOrder} isAwaitingBlockchain={isAwaitingBlockchain} />
+                <RequestLoanForm
+                    createLoanRequest={this.createLoanRequest}
+                    isAwaitingBlockchain={isAwaitingBlockchain}
+                />
             </div>
         );
     }
